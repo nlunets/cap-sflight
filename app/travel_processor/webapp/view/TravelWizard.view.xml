@@ -1,0 +1,52 @@
+<mvc:View
+        height="100%"
+        controllerName="sap.fe.cap.travel.controller.TravelWizard"
+        xmlns:form="sap.ui.layout.form"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:macros="sap.fe.macros"
+        xmlns:core="sap.ui.core"
+        xmlns:u="sap.ui.unified"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m">
+    <Page
+            id="wizardContentPage"
+            showHeader="false">
+        <content>
+            <Wizard id="CreateTravelWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+                    finishButtonText="Finish"
+                    complete="wizardCompletedHandler">
+                <WizardStep id="ProductTypeStep"
+                            title="Travel Data"
+                            validated="true">
+                    <f:Form editable="{ui>/isEditable}">
+                        <f:layout>
+                            <f:ColumnLayout columnsM="2" columnsL="3" columnsXL="4" labelCellsLarge="12" />
+                        </f:layout>
+                        <f:formContainers>
+                            <f:FormContainer>
+                                <f:formElements>
+                                    <macros:FormElement metaPath="TravelID" id="travelID" />
+                                    <macros:FormElement metaPath="to_Agency_AgencyID" id="to_Agency_AgencyID"/>
+                                    <macros:FormElement metaPath="to_Customer_CustomerID" id="to_Customer_CustomerID"/>
+                                    <macros:FormElement metaPath="BeginDate" id="BeginDate"/>
+                                    <macros:FormElement metaPath="EndDate" id="EndDate"/>
+                                    <macros:FormElement metaPath="BookingFee" id="BookingFee"/>
+                                    <macros:FormElement metaPath="TotalPrice" id="TotalPrice"/>
+                                    <macros:FormElement metaPath="Description" id="Description"/>
+                                    <macros:FormElement metaPath="TravelStatus_code" id="TravelStatus_code"/>
+                                </f:formElements>
+                            </f:FormContainer>
+                        </f:formContainers>
+                    </f:Form>
+
+                </WizardStep>
+                <WizardStep id="ProductInfoStep"
+                            validated="false"
+                            title="Booking"
+                            activate="additionalInfoValidation">
+                    <macros:Table metaPath="to_Booking/@com.sap.vocabularies.UI.v1.LineItem"/>
+                </WizardStep>
+            </Wizard>
+        </content>
+    </Page>
+</mvc:View>
